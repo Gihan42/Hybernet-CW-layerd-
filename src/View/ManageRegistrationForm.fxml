@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="455.0" prefWidth="711.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ManageRegistrationFormController">
+   <children>
+      <TabPane prefHeight="412.0" prefWidth="711.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Add New Student">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="424.0" prefWidth="711.0">
+                     <children>
+                        <Label layoutX="224.0" layoutY="31.0" prefHeight="49.0" prefWidth="302.0" text="Add New Student">
+                           <font>
+                              <Font size="33.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="12.0" layoutY="80.0" prefHeight="0.0" prefWidth="685.0" />
+                        <Label layoutX="37.0" layoutY="143.0" prefHeight="38.0" prefWidth="132.0" text="Student Id :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="400.0" layoutY="144.0" prefHeight="38.0" prefWidth="132.0" text="Student Name :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="37.0" layoutY="209.0" prefHeight="38.0" prefWidth="96.0" text="Address :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="406.0" layoutY="209.0" prefHeight="38.0" prefWidth="132.0" text="Contact No :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="34.0" layoutY="282.0" prefHeight="38.0" prefWidth="132.0" text="Date Of Birth :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="403.0" layoutY="277.0" prefHeight="38.0" prefWidth="96.0" text="Gender :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField layoutX="161.0" layoutY="150.0" prefHeight="25.0" prefWidth="197.0" />
+                        <JFXTextField layoutX="158.0" layoutY="283.0" prefHeight="25.0" prefWidth="198.0" />
+                        <JFXTextField layoutX="486.0" layoutY="284.0" prefHeight="25.0" prefWidth="197.0" />
+                        <JFXTextField layoutX="514.0" layoutY="216.0" prefHeight="25.0" prefWidth="185.0" />
+                        <JFXTextField layoutX="532.0" layoutY="151.0" prefHeight="25.0" prefWidth="165.0" />
+                        <JFXTextField layoutX="129.0" layoutY="216.0" prefHeight="25.0" prefWidth="229.0" />
+                        <Button layoutX="287.0" layoutY="353.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="164.0" style="-fx-background-color: #5ea7dc;" text="+ Add New" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Update &amp; Delete Student">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="711.0">
+                     <children>
+                        <Label layoutX="228.0" layoutY="31.0" prefHeight="49.0" prefWidth="261.0" text="Update &amp; Delete">
+                           <font>
+                              <Font size="33.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="12.0" layoutY="80.0" prefHeight="0.0" prefWidth="685.0" />
+                        <Label layoutX="37.0" layoutY="143.0" prefHeight="38.0" prefWidth="132.0" text="Student Id :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="400.0" layoutY="144.0" prefHeight="38.0" prefWidth="132.0" text="Student Name :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="37.0" layoutY="209.0" prefHeight="38.0" prefWidth="96.0" text="Address :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="406.0" layoutY="209.0" prefHeight="38.0" prefWidth="132.0" text="Contact No :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="34.0" layoutY="282.0" prefHeight="38.0" prefWidth="132.0" text="Date Of Birth :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="403.0" layoutY="277.0" prefHeight="38.0" prefWidth="96.0" text="Gender :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField layoutX="161.0" layoutY="150.0" prefHeight="25.0" prefWidth="197.0" />
+                        <JFXTextField layoutX="158.0" layoutY="283.0" prefHeight="25.0" prefWidth="198.0" />
+                        <JFXTextField layoutX="486.0" layoutY="284.0" prefHeight="25.0" prefWidth="197.0" />
+                        <JFXTextField layoutX="514.0" layoutY="216.0" prefHeight="25.0" prefWidth="185.0" />
+                        <JFXTextField layoutX="532.0" layoutY="151.0" prefHeight="25.0" prefWidth="165.0" />
+                        <JFXTextField layoutX="129.0" layoutY="216.0" prefHeight="25.0" prefWidth="229.0" />
+                        <Button layoutX="162.0" layoutY="343.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="164.0" style="-fx-background-color: #5ea7dc;" text="Update" textFill="WHITE" />
+                        <Button layoutX="417.0" layoutY="343.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="164.0" style="-fx-background-color: #f4be28;" text="Delete" textFill="WHITE" />
+                        <TextField layoutX="190.0" layoutY="94.0" prefHeight="25.0" prefWidth="403.0" promptText=" 🔎 search student" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: black;" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <ImageView fx:id="home" fitHeight="40.0" fitWidth="44.0" layoutX="14.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/1946436.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="6.0" layoutY="412.0" mnemonicParsing="false" onAction="#homebuttonOnAction" opacity="0.0" prefHeight="40.0" prefWidth="57.0" text="Button" />
+   </children>
+</AnchorPane>
