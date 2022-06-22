@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
+
 
 @Data
 @NoArgsConstructor
@@ -21,4 +23,9 @@ public class Reserve {
  private double  key_money;
  private String customer_id;
  private String room_id;
+
+ @ManyToOne
+ private Student student;
+ @ManyToOne
+ private Room room;
 }

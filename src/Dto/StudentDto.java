@@ -8,17 +8,15 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
 @ToString
-
-@Entity
+@Setter
 public class StudentDto {
-        @Id
         private String student_id;
         private String student_name;
         private String address;
         private String contact_no;
-        private Date dob;
+        private String dob;
         private String gender;
+
+
 }
