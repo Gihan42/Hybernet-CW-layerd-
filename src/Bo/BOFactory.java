@@ -1,5 +1,6 @@
 package Bo;
 
+import Bo.custom.Iimpl.ProcessBoImpl;
 import Bo.custom.Iimpl.RoomsBoImpl;
 import Bo.custom.Iimpl.StudentBoImpl;
 
@@ -15,7 +16,7 @@ public class BOFactory {
         return  boFactory;
     }
     public enum BoTypes{
-        STUDENT,ROOM
+        STUDENT,ROOM,PROCESS
     }
     public SuperBo getBo(BoTypes types) {
         switch (types) {
@@ -23,6 +24,8 @@ public class BOFactory {
                 return new StudentBoImpl();
             case ROOM:
                 return new RoomsBoImpl();
+            case PROCESS:
+                return new ProcessBoImpl();
             default:
                 return null;
         }

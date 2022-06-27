@@ -96,7 +96,7 @@ public class AdminFormController {
                     root = FXMLLoader.load(this.getClass().getResource("/View/ManageRoomsForm.fxml"));
                     break;
                 case "findMoney":
-                    root = FXMLLoader.load(this.getClass().getResource("/View/place-order-form.fxml"));
+                    root = FXMLLoader.load(this.getClass().getResource("/View/ProcessForm.fxml"));
                     break;
 
 

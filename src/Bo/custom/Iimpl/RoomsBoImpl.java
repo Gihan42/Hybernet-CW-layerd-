@@ -9,6 +9,7 @@ import Entity.Room;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoomsBoImpl implements RoomsBo {
     RoomsDao roomsDao= ( RoomsDao) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ROOMS);
@@ -35,8 +36,14 @@ public class RoomsBoImpl implements RoomsBo {
     }
 
     @Override
-    public ArrayList<RoomsDto> getAllRoomst() throws SQLException, ClassNotFoundException {
-        return null;
+    public List<RoomsDto> getAllRoomst() throws SQLException, ClassNotFoundException, IOException {
+        List<Room>arrayList=roomsDao.getAll();
+        ArrayList<RoomsDto>dto=new ArrayList<>();
+        for (Room room:arrayList
+             ) {
+            dto.add(new RoomsDto(room.getRoom_id(),room.getType(),room.getMonthly_rent(),room.getQty()));
+        }
+        return  dto;
     }
 
     @Override

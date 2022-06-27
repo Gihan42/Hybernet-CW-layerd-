@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="root" prefHeight="564.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProcessFormController">
+   <children>
+      <TabPane prefHeight="526.0" prefWidth="706.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Process">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="706.0">
+                     <children>
+                        <Label layoutX="21.0" layoutY="93.0" prefHeight="28.0" prefWidth="95.0" text="Student Id :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cmbStudentId" layoutX="116.0" layoutY="95.0" prefHeight="25.0" prefWidth="137.0" promptText="Studet Id" />
+                        <Label layoutX="274.0" prefHeight="40.0" prefWidth="172.0" text="Registration" textFill="#1c75ba">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="68.0" layoutY="41.0" prefHeight="0.0" prefWidth="559.0" />
+                        <Label layoutX="505.0" layoutY="44.0" prefHeight="28.0" prefWidth="52.0" text="Date :">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblDate" layoutX="568.0" layoutY="44.0" prefHeight="28.0" prefWidth="93.0" text="2021-10-11">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="299.0" layoutY="94.0" prefHeight="28.0" prefWidth="95.0" text="Room Id :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cmbRoomId" layoutX="380.0" layoutY="97.0" prefHeight="25.0" prefWidth="117.0" promptText="Room Id" />
+                        <TableView fx:id="tblRejistration" layoutX="65.0" layoutY="192.0" prefHeight="249.0" prefWidth="590.0">
+                          <columns>
+                            <TableColumn prefWidth="135.66668701171875" text="Student Id" />
+                              <TableColumn prefWidth="144.0" text="Room Id" />
+                              <TableColumn prefWidth="164.0" text="Key Money" />
+                              <TableColumn prefWidth="145.0" text="date" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="btnRegistration" layoutX="35.0" layoutY="458.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #1c75ba;" text="Register" />
+                        <Label layoutX="21.0" layoutY="136.0" prefHeight="28.0" prefWidth="96.0" text="Key Money :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="txtKeyMoney" layoutX="116.0" layoutY="139.0" prefHeight="25.0" prefWidth="144.0" />
+                        <Button layoutX="348.0" layoutY="152.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #97ed80;" text="Add To Cart" />
+                        <Label layoutX="547.0" layoutY="92.0" prefHeight="34.0" prefWidth="134.0" text="Reserve Id:">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblReId" layoutX="591.0" layoutY="133.0" prefHeight="34.0" prefWidth="72.0" text="RE000" textFill="#a32f2f">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnRemove" layoutX="531.0" layoutY="458.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #efa94d;" text="Remove" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Availability">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="224.0" layoutY="14.0" prefHeight="54.0" prefWidth="295.0" text="Avalibility Room" textFill="#2f5b6b">
+                           <font>
+                              <Font size="37.0" />
+                           </font>
+                        </Label>
+                        <JFXComboBox layoutX="35.0" layoutY="105.0" prefHeight="25.0" prefWidth="168.0" promptText="Room Type" />
+                        <Separator layoutX="57.0" layoutY="66.0" prefHeight="4.0" prefWidth="607.0" />
+                        <TableView layoutX="42.0" layoutY="167.0" prefHeight="259.0" prefWidth="623.0">
+                          <columns>
+                            <TableColumn prefWidth="122.00003051757812" text="Student Id" />
+                              <TableColumn prefWidth="129.0" text="Room Id" />
+                              <TableColumn prefWidth="129.0" text="Dev Value" />
+                              <TableColumn prefWidth="129.0" text="Description" />
+                              <TableColumn prefWidth="129.0" text="C1" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Button layoutY="526.0" mnemonicParsing="false" onAction="#btnHomeOnAction" prefHeight="36.0" prefWidth="706.0" style="-fx-background-color: #a8fff2;" text="Home" />
+   </children>
+</AnchorPane>

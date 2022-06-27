@@ -10,6 +10,7 @@ import Entity.Student;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudentBoImpl implements StudentBo {
     StudentDao studentDao= (StudentDao) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.STUDENT);
@@ -45,8 +46,13 @@ public class StudentBoImpl implements StudentBo {
     }
 
     @Override
-    public ArrayList<StudentDto> getAllStudent() throws SQLException, ClassNotFoundException {
-        return null;
+    public ArrayList<StudentDto> getAllStudent() throws SQLException, ClassNotFoundException, IOException {
+        List<Student> list = studentDao.getAll();
+        ArrayList<StudentDto> arrayList = new ArrayList<>();
+        for (Student student : list) {
+            arrayList.add(new StudentDto(student.getStudent_id(),student.getStudent_name(), student.getAddress(),student.getContact_no(),student.getDob(),student.getGender()));
+        }
+        return arrayList;
     }
 
     @Override

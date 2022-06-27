@@ -60,8 +60,15 @@ public class StudentDaoImpl implements StudentDao {
     }
 
     @Override
-    public ArrayList<Student> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+    public List getAll() throws SQLException, ClassNotFoundException, IOException {
+        Session session = factoryconfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        String hql="FROM Student";
+        Query query = session.createQuery(hql);
+        List list = query.list();
+        transaction.commit();
+        session.close();
+        return  list;
     }
 
     @Override

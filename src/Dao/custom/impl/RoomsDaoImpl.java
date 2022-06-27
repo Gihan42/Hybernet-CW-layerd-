@@ -10,6 +10,7 @@ import util.factoryconfiguration;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoomsDaoImpl implements RoomsDao {
     @Override
@@ -51,8 +52,13 @@ public class RoomsDaoImpl implements RoomsDao {
     }
 
     @Override
-    public ArrayList<Room> getAll() throws SQLException, ClassNotFoundException {
-        return null;
+    public List<Room> getAll() throws SQLException, ClassNotFoundException, IOException {
+        Session session = factoryconfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Room> list = session.createQuery("FROM Room ").list();
+        transaction.commit();
+        session.close();
+        return list;
     }
 
     @Override
