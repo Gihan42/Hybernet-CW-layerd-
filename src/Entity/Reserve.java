@@ -17,15 +17,23 @@ import java.util.Date;
 
 @Entity
 public class Reserve {
-    @Id
+ @Id
  private String res_id;
- private Date date;
- private double  key_money;
- private String customer_id;
+ private String date;
+ private double key_money;
+ private String student_id;
  private String room_id;
 
  @ManyToOne
  private Student student;
  @ManyToOne
  private Room room;
+/*
+ public Reserve(String res_id, String date, double key_money, String student_id, String room_id) {
+  this.res_id = res_id;
+  this.date = date;
+  this.key_money = key_money;
+  this.student_id = student_id;
+  this.room_id = room_id;
+ }*/
 }

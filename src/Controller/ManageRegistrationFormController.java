@@ -83,13 +83,22 @@ public class ManageRegistrationFormController {
         btnDelete.setDisable(false);
         btnUpdate.setDisable(false);
         try {
-            StudentDto studentDto = studentBo.searchStudent(txtSearchStudentId.getText());
-            txtUpdateStudentId.setText(studentDto.getStudent_id());
-            txtUpdateStudentName.setText(studentDto.getStudent_name());
-            txtUpdateStudentAddress.setText(studentDto.getAddress());
-            txtUpdateStudentContactNo.setText(studentDto.getContact_no());
-            txtUpdateStudentBDay.setText(studentDto.getDob());
-            txtUpdateStudentGender.setText(studentDto.getGender());
+          /*  if (!isExistsStudent(txtSearchStudentId.getText())){
+                new Alert(Alert.AlertType.ERROR, "There is no such Customer associated with the id ").show();
+            }
+            else {
+                boolean b = studentBo.existStudent(txtSearchStudentId.getText());
+                if (!b) {
+                    new Alert(Alert.AlertType.ERROR, " Please Check Id " + txtSearchStudentId.getText()).show();
+                }*/
+                StudentDto studentDto = studentBo.searchStudent(txtSearchStudentId.getText());
+                txtUpdateStudentId.setText(studentDto.getStudent_id());
+                txtUpdateStudentName.setText(studentDto.getStudent_name());
+                txtUpdateStudentAddress.setText(studentDto.getAddress());
+                txtUpdateStudentContactNo.setText(studentDto.getContact_no());
+                txtUpdateStudentBDay.setText(studentDto.getDob());
+                txtUpdateStudentGender.setText(studentDto.getGender());
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -137,5 +146,9 @@ public class ManageRegistrationFormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    boolean isExistsStudent(String id) throws SQLException, IOException, ClassNotFoundException {
+            return   studentBo.existStudent(id);
     }
 }

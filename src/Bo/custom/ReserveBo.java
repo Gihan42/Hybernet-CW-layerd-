@@ -18,6 +18,6 @@ public interface ReserveBo extends SuperBo {
     StudentDto searchReserve(String id) throws SQLException, ClassNotFoundException, IOException;
     List<ReserveDto> getAllReserve() throws SQLException, ClassNotFoundException, IOException;
     boolean updateReserve(ReserveDto dto) throws SQLException, ClassNotFoundException, IOException;
-    String genarateId()throws SQLException,ClassNotFoundException;
+    String genarateId() throws SQLException, ClassNotFoundException, IOException;
 
 }

@@ -1,6 +1,7 @@
 package Bo.custom;
 
 import Bo.SuperBo;
+import Dto.ReserveDto;
 import Dto.RoomsDto;
 import Dto.StudentDto;
 
@@ -14,4 +15,8 @@ public interface ProcessBo extends SuperBo {
     ArrayList<RoomsDto> getAllRoom() throws SQLException, ClassNotFoundException, IOException;
 
     String genarateReserveId() throws SQLException, ClassNotFoundException, IOException;
+
+    boolean purchaseOrder(RoomsDto orderDTO, ArrayList<ReserveDto> reserveDtos) throws SQLException, ClassNotFoundException, IOException;
+
+
 }

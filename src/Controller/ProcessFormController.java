@@ -4,10 +4,12 @@ import Bo.BOFactory;
 import Bo.custom.ProcessBo;
 import Bo.custom.ReserveBo;
 import Bo.custom.RoomsBo;
+import Dto.ReserveDto;
 import Dto.RoomsDto;
 import Dto.StudentDto;
 import Entity.Room;
 import Tm.CartTm;
+import Tm.RoomTm;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -29,6 +31,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProcessFormController {
     public ComboBox<String> cmbStudentId;
@@ -49,14 +52,23 @@ public class ProcessFormController {
     public JFXTextField txtqty;
     public TableColumn colResId;
 
+    public TableView<RoomTm> tblRoom;
+    public TableColumn colroomId;
+    public TableColumn colRoomType;
+    public TableColumn colMonthlyRent;
+    public TableColumn colQty;
+
 
     ProcessBo processBo= (ProcessBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.PROCESS);
     RoomsBo roomsBo= (RoomsBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.ROOM);
+    ReserveBo reserveBo= (ReserveBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.RESEVE);
     ObservableList<CartTm> tmList= FXCollections.observableArrayList();
      public  void initialize(){
           try {
               loadAllStudentId();
               loadAllRoomId();
+              getAllRooms();
+             // lblReId.setText(reserveBo.genarateId());
           } catch (SQLException throwables) {
               throwables.printStackTrace();
           } catch (IOException e) {
@@ -71,6 +83,10 @@ public class ProcessFormController {
          ColKeyMoney.setCellValueFactory(new PropertyValueFactory<>("key_money"));
          colResId.setCellValueFactory(new PropertyValueFactory<>("res_id"));
 
+         colroomId.setCellValueFactory(new PropertyValueFactory<>("room_id"));
+         colRoomType.setCellValueFactory(new PropertyValueFactory<>("type"));
+         colMonthlyRent.setCellValueFactory(new PropertyValueFactory<>("monthly_rent"));
+         colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
                }
       public void loadAllRoomId() throws SQLException, IOException, ClassNotFoundException {
          ArrayList<RoomsDto> all=processBo.getAllRoom();
@@ -138,8 +154,6 @@ public class ProcessFormController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void btnRemoveOnAction(ActionEvent actionEvent) {
@@ -147,4 +161,33 @@ public class ProcessFormController {
         tblRejistration.getSelectionModel().clearSelection();
 
     }
+    public void getAllRooms() throws SQLException, IOException, ClassNotFoundException {
+         tblRoom.getItems().clear();
+         List<RoomsDto> arrayList=roomsBo.getAllRoomst();
+        for (RoomsDto rm:arrayList
+             ) {
+            tblRoom.getItems().add(new RoomTm(rm.getRoom_id(),rm.getType(),rm.getMonthly_rent(),rm.getQty()));
+        }
+
+    }
+
+    public void RejistraOnAction(ActionEvent actionEvent) {
+       /* String res_id=lblReId.getText();
+        String s_id=cmbStudentId.getValue();
+        String r_id=cmbRoomId.getValue();
+        int qty=Integer.parseInt(txtqty.getText());
+        double monthlyRent=Double.parseDouble(txtUnitprice.getText());
+        double keymoney=Double.parseDouble(txtKeyMoney.getText());
+        try {
+            reserveBo.saveReserve(new ReserveDto(res_id,lblDate.getText(),monthlyRent,s_id,r_id));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+    }
+
 }

@@ -4,6 +4,7 @@ import Dao.custom.StudentDao;
 import Entity.Student;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import util.factoryconfiguration;
 
@@ -35,7 +36,13 @@ public class StudentDaoImpl implements StudentDao {
 
         transaction.commit();
         session.close();*/
-        return false;
+        /*Session session = factoryconfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        NativeQuery sqlQuery = session.createSQLQuery("SELECT student_id FROM Student WHERE student_id=student_id");
+        String pid = (String) sqlQuery.uniqueResult();
+        transaction.commit();
+        session.close();*/
+        return true;
     }
 
     @Override

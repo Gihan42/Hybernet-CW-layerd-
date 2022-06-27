@@ -29,8 +29,9 @@ public class StudentBoImpl implements StudentBo {
     }
 
     @Override
-    public boolean existStudent(String id) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean existStudent(String id) throws SQLException, ClassNotFoundException, IOException {
+       /* return studentDao.exist(id);*/
+        return true;
     }
 
     @Override

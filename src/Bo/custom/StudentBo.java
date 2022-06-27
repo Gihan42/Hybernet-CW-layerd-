@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface StudentBo extends SuperBo {
     boolean saveStudent(StudentDto dto) throws SQLException, ClassNotFoundException, IOException;
-    boolean existStudent(String id)throws SQLException,ClassNotFoundException;
+    boolean existStudent(String id) throws SQLException, ClassNotFoundException, IOException;
     boolean deleteStudent(String id) throws SQLException, ClassNotFoundException, IOException;
     StudentDto searchStudent(String id) throws SQLException, ClassNotFoundException, IOException;
     List<StudentDto> getAllStudent() throws SQLException, ClassNotFoundException, IOException;
