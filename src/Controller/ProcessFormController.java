@@ -3,19 +3,22 @@ package Controller;
 import Bo.BOFactory;
 import Bo.custom.ProcessBo;
 import Bo.custom.ReserveBo;
+import Bo.custom.RoomsBo;
 import Dto.RoomsDto;
 import Dto.StudentDto;
+import Entity.Room;
+import Tm.CartTm;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -28,19 +31,28 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ProcessFormController {
-    public ComboBox cmbStudentId;
+    public ComboBox<String> cmbStudentId;
     public Label lblDate;
-    public ComboBox cmbRoomId;
-    public TableView tblRejistration;
+    public ComboBox<String> cmbRoomId;
+    public TableView<CartTm> tblRejistration;
     public Button btnRegistration;
     public JFXTextField txtKeyMoney;
     public Label lblReId;
     public Button btnRemove;
     public AnchorPane root;
+    public JFXTextField txtUnitprice;
+
+    public TableColumn colStudentId;
+    public TableColumn colRoomId;
+    public TableColumn ColKeyMoney;
+    public TableColumn colDate;
+    public JFXTextField txtqty;
+    public TableColumn colResId;
 
 
-
-     ProcessBo processBo= (ProcessBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.PROCESS);
+    ProcessBo processBo= (ProcessBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.PROCESS);
+    RoomsBo roomsBo= (RoomsBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.ROOM);
+    ObservableList<CartTm> tmList= FXCollections.observableArrayList();
      public  void initialize(){
           try {
               loadAllStudentId();
@@ -53,9 +65,13 @@ public class ProcessFormController {
               e.printStackTrace();
           }
          generateDateTime();
+         colStudentId.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
+         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+         colRoomId.setCellValueFactory(new PropertyValueFactory<>("room_id"));
+         ColKeyMoney.setCellValueFactory(new PropertyValueFactory<>("key_money"));
+         colResId.setCellValueFactory(new PropertyValueFactory<>("res_id"));
 
-
-      }
+               }
       public void loadAllRoomId() throws SQLException, IOException, ClassNotFoundException {
          ArrayList<RoomsDto> all=processBo.getAllRoom();
           for (RoomsDto rtm:all
@@ -86,5 +102,49 @@ public class ProcessFormController {
    }
     public void btnHomeOnAction(ActionEvent actionEvent) throws IOException {
         setUI("AdminForm");
+    }
+
+    public void addtoCartOnActions(ActionEvent actionEvent) {
+        String res_id=lblReId.getText();
+        String s_id=cmbStudentId.getValue();
+        String r_id=cmbRoomId.getValue();
+        int qty=Integer.parseInt(txtqty.getText());
+        double monthlyRent=Double.parseDouble(txtUnitprice.getText());
+        double keymoney=Double.parseDouble(txtKeyMoney.getText());
+
+        CartTm tm = new CartTm(
+                lblReId.getText(),
+                lblDate.getText(),
+                keymoney,
+                s_id,
+                r_id
+        );
+        tmList.add(tm);
+        tblRejistration.setItems(tmList);
+        tblRejistration.refresh();
+
+    }
+
+    public void cmbRoomIdOnAction(ActionEvent actionEvent) {
+        String id= cmbRoomId.getValue();
+        try {
+            RoomsDto roomsDto = roomsBo.searchRooms(id);
+            txtUnitprice.setText(String.valueOf( roomsDto.getMonthly_rent()));
+            txtqty.setText(String.valueOf(roomsDto.getQty()));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void btnRemoveOnAction(ActionEvent actionEvent) {
+        tblRejistration.getItems().remove(tblRejistration.getSelectionModel().getSelectedItem());
+        tblRejistration.getSelectionModel().clearSelection();
+
     }
 }
