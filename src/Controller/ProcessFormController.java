@@ -5,6 +5,8 @@ import Bo.custom.ProcessBo;
 import Bo.custom.ReserveBo;
 import Bo.custom.RoomsBo;
 import Bo.custom.StudentBo;
+import Dao.DAOFactory;
+import Dao.custom.RoomsDao;
 import Dto.ReserveDto;
 import Dto.RoomsDto;
 import Dto.StudentDto;
@@ -46,6 +48,7 @@ public class ProcessFormController {
     public Button btnRemove;
     public AnchorPane root;
     public JFXTextField txtUnitprice;
+    public JFXTextField txtPayment;
 
     public TableColumn colStudentId;
     public TableColumn colRoomId;
@@ -75,12 +78,15 @@ public class ProcessFormController {
     public JFXTextField txtAReserveId;
 
 
+
     private String reid =null;
+    private double keymoney=00;
 
     ProcessBo processBo= (ProcessBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.PROCESS);
     RoomsBo roomsBo= (RoomsBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.ROOM);
     ReserveBo reserveBo= (ReserveBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.RESEVE);
     StudentBo studentBo= (StudentBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.STUDENT);
+    RoomsDao roomsDao= (RoomsDao) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ROOMS);
 
     ObservableList<CartTm> tmList= FXCollections.observableArrayList();
      public  void initialize(){
@@ -182,8 +188,9 @@ public class ProcessFormController {
         String r_id=cmbRoomId.getValue();
         int qty=Integer.parseInt(txtqty.getText());
         double monthlyRent=Double.parseDouble(txtUnitprice.getText());
-        double keymoney=Double.parseDouble(txtKeyMoney.getText());
-
+        double payment=Double.parseDouble(txtPayment.getText());
+        keymoney=monthlyRent-payment;
+        txtKeyMoney.setText(String.valueOf(keymoney));
         CartTm tm = new CartTm(
                 lblReId.getText(),
                 lblDate.getText(),
@@ -235,14 +242,17 @@ public class ProcessFormController {
         int qty = Integer.parseInt(txtqty.getText());
         double monthlyRent = Double.parseDouble(txtUnitprice.getText());
         double keymoney = Double.parseDouble(txtKeyMoney.getText());
-        tblAllRegistration.getItems().clear();
+
+        RoomsDto reserveDto = new RoomsDto();
         try {
-            boolean b = reserveBo.saveReserve(new ReserveDto(res_id, lblDate.getText(), monthlyRent, s_id, r_id));
-            lblReId.setText(genaratenewId());
+                boolean b = reserveBo.saveReserve(new ReserveDto(res_id, lblDate.getText(), keymoney, s_id, r_id));
+                lblReId.setText(genaratenewId());
+
             if(b){
                 new Alert(Alert.AlertType.CONFIRMATION,"Student Register")
 .show();           tblAllRegistration.refresh();
             }
+            roomsDao.updateRoomsQty(r_id,reserveDto.getQty());
         } catch (SQLException throwables) {
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong")
                     .show();

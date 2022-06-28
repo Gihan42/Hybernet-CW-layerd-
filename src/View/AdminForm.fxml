@@ -49,7 +49,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="396.0" layoutY="268.0" prefHeight="19.0" prefWidth="100.0" text="money student">
+      <Label layoutX="396.0" layoutY="268.0" prefHeight="19.0" prefWidth="100.0" text="&amp; Registration">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

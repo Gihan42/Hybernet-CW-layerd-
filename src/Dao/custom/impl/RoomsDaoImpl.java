@@ -77,4 +77,14 @@ public class RoomsDaoImpl implements RoomsDao {
     public String genarateId() throws SQLException, ClassNotFoundException {
         return null;
     }
+
+    @Override
+    public boolean updateRoomsQty(String room_id, int qty) throws SQLException, ClassNotFoundException, IOException {
+        Session session = factoryconfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.createSQLQuery("UPDATE Room SET qty=qty-qty WHERE room_id=room_id");
+        transaction.commit();
+        session.close();
+        return true;
+    }
 }
