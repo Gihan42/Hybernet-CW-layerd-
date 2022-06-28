@@ -11,8 +11,10 @@ import util.factoryconfiguration;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReserveDaoImpl implements ReserveDao {
+
     @Override
     public boolean save(Reserve dto) throws SQLException, ClassNotFoundException, IOException {
        Session session = factoryconfiguration.getInstance().getSession();
@@ -39,8 +41,13 @@ public class ReserveDaoImpl implements ReserveDao {
     }
 
     @Override
-    public ArrayList<Reserve> getAll() throws SQLException, ClassNotFoundException, IOException {
-        return null;
+    public List<Reserve> getAll() throws SQLException, ClassNotFoundException, IOException {
+        Session session = factoryconfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List from_reserve_ = session.createQuery("FROM Reserve ").list();
+        transaction.commit();
+        session.close();
+        return from_reserve_;
     }
 
     @Override
@@ -50,7 +57,7 @@ public class ReserveDaoImpl implements ReserveDao {
 
     @Override
     public String genarateId() throws SQLException, ClassNotFoundException, IOException {
-        Session session = factoryconfiguration.getInstance().getSession();
+        /*Session session = factoryconfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         Query query = session. createQuery("SELECT Reserve.res_id  FROM Reserve ORDER BY res_id DESC");
         query.setMaxResults(1);
@@ -63,6 +70,24 @@ public class ReserveDaoImpl implements ReserveDao {
         session.close();
 
         String[] id = prevId.split("-");
-        return id[0] + (Integer.parseInt(id[1]) + 1);
+        return id[0] + (Integer.parseInt(id[1]) + 1);*/
+        Session session = factoryconfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        NativeQuery sqlQuery = session.createSQLQuery("select res_id from Reserve order by res_id desc limit 1");
+        String id = (String) sqlQuery.uniqueResult();
+        transaction.commit();
+        session.close();
+        return id;
+    }
+
+    @Override
+    public Reserve get(String id) throws Exception {
+        Session session = factoryconfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Reserve reserve = session.get(Reserve.class, id);
+        transaction.commit();
+        session.close();
+        return reserve;
     }
 }

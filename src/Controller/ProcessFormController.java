@@ -58,6 +58,7 @@ public class ProcessFormController {
     public TableColumn colMonthlyRent;
     public TableColumn colQty;
 
+    private String reid =null;
 
     ProcessBo processBo= (ProcessBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.PROCESS);
     RoomsBo roomsBo= (RoomsBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.ROOM);
@@ -87,6 +88,9 @@ public class ProcessFormController {
          colRoomType.setCellValueFactory(new PropertyValueFactory<>("type"));
          colMonthlyRent.setCellValueFactory(new PropertyValueFactory<>("monthly_rent"));
          colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+         lblReId.setText(genaratenewId());
+            btnRegistration.setDisable(true);
+            btnRemove.setDisable(true);
                }
       public void loadAllRoomId() throws SQLException, IOException, ClassNotFoundException {
          ArrayList<RoomsDto> all=processBo.getAllRoom();
@@ -138,7 +142,8 @@ public class ProcessFormController {
         tmList.add(tm);
         tblRejistration.setItems(tmList);
         tblRejistration.refresh();
-
+        btnRegistration.setDisable(false);
+        btnRemove.setDisable(false);
     }
 
     public void cmbRoomIdOnAction(ActionEvent actionEvent) {
@@ -172,22 +177,37 @@ public class ProcessFormController {
     }
 
     public void RejistraOnAction(ActionEvent actionEvent) {
-       /* String res_id=lblReId.getText();
-        String s_id=cmbStudentId.getValue();
-        String r_id=cmbRoomId.getValue();
-        int qty=Integer.parseInt(txtqty.getText());
-        double monthlyRent=Double.parseDouble(txtUnitprice.getText());
-        double keymoney=Double.parseDouble(txtKeyMoney.getText());
+        String res_id = lblReId.getText();
+        String s_id = cmbStudentId.getValue();
+        String r_id = cmbRoomId.getValue();
+        int qty = Integer.parseInt(txtqty.getText());
+        double monthlyRent = Double.parseDouble(txtUnitprice.getText());
+        double keymoney = Double.parseDouble(txtKeyMoney.getText());
         try {
-            reserveBo.saveReserve(new ReserveDto(res_id,lblDate.getText(),monthlyRent,s_id,r_id));
+            boolean b = reserveBo.saveReserve(new ReserveDto(res_id, lblDate.getText(), monthlyRent, s_id, r_id));
+            lblReId.setText(genaratenewId());
+            if(b){
+                new Alert(Alert.AlertType.CONFIRMATION,"Student Register")
+.show();            }
         } catch (SQLException throwables) {
+            new Alert(Alert.AlertType.ERROR,"Something Went Wrong")
+                    .show();
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
+    }
 
+    public String genaratenewId(){
+        try {
+            reid = reserveBo.genarateId();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, e.toString());
+            alert.show();
+        }
+        return reid;
     }
 
 }

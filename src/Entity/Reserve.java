@@ -28,12 +28,22 @@ public class Reserve {
  private Student student;
  @ManyToOne
  private Room room;
-/*
+
  public Reserve(String res_id, String date, double key_money, String student_id, String room_id) {
   this.res_id = res_id;
   this.date = date;
   this.key_money = key_money;
   this.student_id = student_id;
   this.room_id = room_id;
+ }
+
+ /*public Reserve(String res_id, String date, double key_money, String student_id, String room_id, Entity.Student student, Entity.Room room) {
+  this.res_id = res_id;
+  this.date = date;
+  this.key_money = key_money;
+  this.student_id = student_id;
+  this.room_id = room_id;
+  this.student = student;
+  this.room = room;
  }*/
 }

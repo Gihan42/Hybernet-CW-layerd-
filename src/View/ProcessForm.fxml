@@ -21,80 +21,24 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="706.0">
                      <children>
-                        <Label layoutX="21.0" layoutY="93.0" prefHeight="28.0" prefWidth="95.0" text="Student Id :">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="cmbStudentId" layoutX="116.0" layoutY="95.0" prefHeight="25.0" prefWidth="137.0" promptText="Studet Id" />
-                        <Label layoutX="274.0" prefHeight="40.0" prefWidth="172.0" text="Registration" textFill="#1c75ba">
+                        <Label layoutX="274.0" prefHeight="40.0" prefWidth="197.0" text="All Registration" textFill="#1c75ba">
                            <font>
                               <Font size="28.0" />
                            </font>
                         </Label>
                         <Separator layoutX="68.0" layoutY="41.0" prefHeight="0.0" prefWidth="559.0" />
-                        <Label layoutX="539.0" layoutY="44.0" prefHeight="28.0" prefWidth="52.0" text="Date :">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblDate" layoutX="602.0" layoutY="44.0" prefHeight="28.0" prefWidth="93.0" text="2021-10-11">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="299.0" layoutY="94.0" prefHeight="28.0" prefWidth="95.0" text="Room Id :">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="cmbRoomId" layoutX="380.0" layoutY="97.0" onAction="#cmbRoomIdOnAction" prefHeight="25.0" prefWidth="117.0" promptText="Room Id" />
-                        <TableView fx:id="tblRejistration" layoutX="12.0" layoutY="225.0" prefHeight="214.0" prefWidth="682.0">
+                        <TableView fx:id="tblAllRejistration" layoutX="12.0" layoutY="225.0" prefHeight="214.0" prefWidth="682.0">
                           <columns>
-                              <TableColumn fx:id="colStudentId" prefWidth="164.0" text="Student Id" />
-                            <TableColumn fx:id="colRoomId" prefWidth="135.66668701171875" text="Room Id" />
-                              <TableColumn fx:id="ColKeyMoney" prefWidth="144.0" text="Key Money" />
-                              <TableColumn fx:id="colDate" prefWidth="128.33331298828125" text="date" />
-                              <TableColumn fx:id="colResId" prefWidth="128.33331298828125" text="Reserve Id" />
+                              <TableColumn fx:id="colRegitratonS_id" prefWidth="164.0" text="Student Id" />
+                            <TableColumn fx:id="ColRegistraionRoomId" prefWidth="135.66668701171875" text="Room Id" />
+                              <TableColumn fx:id="colRegisrationKeyMoney" prefWidth="144.0" text="Key Money" />
+                              <TableColumn fx:id="colRegistraionDate" prefWidth="128.33331298828125" text="date" />
+                              <TableColumn fx:id="colRegistrationResId" prefWidth="128.33331298828125" text="Reserve Id" />
                           </columns>
                         </TableView>
-                        <Button fx:id="btnRegistration" layoutX="291.0" layoutY="457.0" mnemonicParsing="false" onAction="#RejistraOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #1c75ba;" text="Register" />
-                        <Button layoutX="21.0" layoutY="457.0" mnemonicParsing="false" onAction="#addtoCartOnActions" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: #97ed80;" text="Add To Cart" />
-                        <Label layoutX="565.0" layoutY="90.0" prefHeight="34.0" prefWidth="134.0" text="Reserve Id:">
-                           <font>
-                              <Font name="System Bold" size="23.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblReId" layoutX="619.0" layoutY="124.0" prefHeight="34.0" prefWidth="72.0" text="RE000" textFill="#a32f2f">
-                           <font>
-                              <Font name="System Bold" size="23.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="btnRemove" layoutX="542.0" layoutY="457.0" mnemonicParsing="false" onAction="#btnRemoveOnAction" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #efa94d;" text="Remove Cart" />
-                        <Label layoutX="21.0" layoutY="139.0" prefHeight="28.0" prefWidth="113.0" text="Monthly Rent :">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <JFXTextField fx:id="txtUnitprice" layoutX="128.0" layoutY="140.0" prefHeight="25.0" prefWidth="132.0" />
-                        <Label layoutX="322.0" layoutY="185.0" prefHeight="28.0" prefWidth="96.0" text="Key Money :">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <JFXTextField fx:id="txtKeyMoney" layoutX="425.0" layoutY="187.0" prefHeight="25.0" prefWidth="144.0" />
-                        <Label layoutX="322.0" layoutY="144.0" prefHeight="28.0" prefWidth="96.0" text="Payment :">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <JFXTextField fx:id="txtKeyMoney2" layoutX="426.0" layoutY="145.0" prefHeight="25.0" prefWidth="144.0" />
-                        <Label layoutX="21.0" layoutY="185.0" prefHeight="28.0" prefWidth="55.0" text="Qty :">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <JFXTextField fx:id="txtqty" layoutX="67.0" layoutY="186.0" prefHeight="25.0" prefWidth="114.0" />
+                        <JFXTextField fx:id="txtUnitprice" layoutX="88.0" layoutY="69.0" prefHeight="25.0" prefWidth="132.0" />
+                        <JFXTextField fx:id="txtKeyMoney" layoutX="474.0" layoutY="69.0" prefHeight="25.0" prefWidth="144.0" />
+                        <JFXTextField fx:id="txtKeyMoney2" layoutX="270.0" layoutY="69.0" prefHeight="25.0" prefWidth="144.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -141,6 +85,88 @@
                               <TableColumn fx:id="colQty" prefWidth="139.0" text="Qty" />
                            </columns>
                         </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="All Registration">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="483.0" prefWidth="706.0">
+                     <children>
+                        <Label layoutX="21.0" layoutY="93.0" prefHeight="28.0" prefWidth="95.0" text="Student Id :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cmbStudentId1" layoutX="116.0" layoutY="95.0" prefHeight="25.0" prefWidth="137.0" promptText="Studet Id" />
+                        <Label layoutX="274.0" prefHeight="40.0" prefWidth="172.0" text="Registration" textFill="#1c75ba">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="68.0" layoutY="41.0" prefHeight="0.0" prefWidth="559.0" />
+                        <Label layoutX="539.0" layoutY="44.0" prefHeight="28.0" prefWidth="52.0" text="Date :">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblDate1" layoutX="602.0" layoutY="44.0" prefHeight="28.0" prefWidth="93.0" text="2021-10-11">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="299.0" layoutY="94.0" prefHeight="28.0" prefWidth="95.0" text="Room Id :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cmbRoomId1" layoutX="380.0" layoutY="97.0" onAction="#cmbRoomIdOnAction" prefHeight="25.0" prefWidth="117.0" promptText="Room Id" />
+                        <TableView fx:id="tblRejistration1" layoutX="12.0" layoutY="225.0" prefHeight="214.0" prefWidth="682.0">
+                           <columns>
+                              <TableColumn fx:id="colStudentId1" prefWidth="164.0" text="Student Id" />
+                              <TableColumn fx:id="colRoomId1" prefWidth="135.66668701171875" text="Room Id" />
+                              <TableColumn fx:id="ColKeyMoney1" prefWidth="144.0" text="Key Money" />
+                              <TableColumn fx:id="colDate1" prefWidth="128.33331298828125" text="date" />
+                              <TableColumn fx:id="colResId1" prefWidth="128.33331298828125" text="Reserve Id" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="btnRegistration1" layoutX="291.0" layoutY="457.0" mnemonicParsing="false" onAction="#RejistraOnAction" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #1c75ba;" text="Register" />
+                        <Button layoutX="21.0" layoutY="457.0" mnemonicParsing="false" onAction="#addtoCartOnActions" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: #97ed80;" text="Add To Cart" />
+                        <Label layoutX="565.0" layoutY="90.0" prefHeight="34.0" prefWidth="134.0" text="Reserve Id:">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblReId1" layoutX="619.0" layoutY="124.0" prefHeight="34.0" prefWidth="72.0" text="RE001" textFill="#a32f2f">
+                           <font>
+                              <Font name="System Bold" size="23.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnRemove1" layoutX="542.0" layoutY="457.0" mnemonicParsing="false" onAction="#btnRemoveOnAction" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #efa94d;" text="Remove Cart" />
+                        <Label layoutX="21.0" layoutY="139.0" prefHeight="28.0" prefWidth="113.0" text="Monthly Rent :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="txtUnitprice1" layoutX="128.0" layoutY="140.0" prefHeight="25.0" prefWidth="132.0" />
+                        <Label layoutX="322.0" layoutY="185.0" prefHeight="28.0" prefWidth="96.0" text="Key Money :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="txtKeyMoney1" layoutX="425.0" layoutY="187.0" prefHeight="25.0" prefWidth="144.0" />
+                        <Label layoutX="322.0" layoutY="144.0" prefHeight="28.0" prefWidth="96.0" text="Payment :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="txtKeyMoney21" layoutX="426.0" layoutY="145.0" prefHeight="25.0" prefWidth="144.0" />
+                        <Label layoutX="21.0" layoutY="185.0" prefHeight="28.0" prefWidth="55.0" text="Qty :">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="txtqty1" layoutX="67.0" layoutY="186.0" prefHeight="25.0" prefWidth="114.0" />
                      </children>
                   </AnchorPane>
                </content>
