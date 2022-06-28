@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="564.0" prefWidth="706.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProcessFormController">
+<AnchorPane fx:id="root" prefHeight="564.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProcessFormController">
    <children>
       <TabPane prefHeight="526.0" prefWidth="706.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -141,6 +141,35 @@
                               <TableColumn fx:id="colQty" prefWidth="139.0" text="Qty" />
                            </columns>
                         </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="All Registration">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="224.0" layoutY="14.0" prefHeight="54.0" prefWidth="295.0" text="All Registration" textFill="#2f5b6b">
+                           <font>
+                              <Font size="37.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutX="57.0" layoutY="66.0" prefHeight="4.0" prefWidth="607.0" />
+                        <TableView fx:id="tblAllRegistration" layoutY="269.0" prefHeight="214.0" prefWidth="682.0">
+                           <columns>
+                              <TableColumn fx:id="colRStudentId1" prefWidth="164.0" text="Student Id" />
+                              <TableColumn fx:id="colRRoomId1" prefWidth="135.66668701171875" text="Room Id" />
+                              <TableColumn fx:id="ColRKeyMoney1" prefWidth="144.0" text="Key Money" />
+                              <TableColumn fx:id="colRDate1" prefWidth="128.33331298828125" text="date" />
+                              <TableColumn fx:id="colrResId1" prefWidth="128.33331298828125" text="Reserve Id" />
+                           </columns>
+                        </TableView>
+                        <JFXTextField fx:id="txtAStudentId" layoutX="14.0" layoutY="92.0" promptText="Student Id" />
+                        <JFXTextField fx:id="txtAStudentName" layoutX="14.0" layoutY="134.0" promptText="Student Name" />
+                        <JFXTextField fx:id="txtARoomId" layoutX="14.0" layoutY="179.0" promptText="Room Id" />
+                        <JFXTextField fx:id="txtAroomType" layoutX="14.0" layoutY="224.0" promptText="Room Type" />
+                        <JFXTextField fx:id="txtAReserveId" layoutX="224.0" layoutY="92.0" prefHeight="25.0" prefWidth="146.0" promptText="Registation Id" />
+                        <Button layoutX="224.0" layoutY="147.0" mnemonicParsing="false" onAction="#removeRegistrationOnAction" prefHeight="25.0" prefWidth="144.0" style="-fx-background-color: #ffd36d;" text="Regitration Remove" />
                      </children>
                   </AnchorPane>
                </content>

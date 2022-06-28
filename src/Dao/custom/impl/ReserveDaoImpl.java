@@ -31,8 +31,14 @@ public class ReserveDaoImpl implements ReserveDao {
     }
 
     @Override
-    public boolean delete(String s) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean delete(String s) throws SQLException, ClassNotFoundException, IOException {
+        Session session = factoryconfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Reserve load = session.load(Reserve.class, s);
+        session.delete(load);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
@@ -57,20 +63,6 @@ public class ReserveDaoImpl implements ReserveDao {
 
     @Override
     public String genarateId() throws SQLException, ClassNotFoundException, IOException {
-        /*Session session = factoryconfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Query query = session. createQuery("SELECT Reserve.res_id  FROM Reserve ORDER BY res_id DESC");
-        query.setMaxResults(1);
-        if(query.uniqueResult()==null){
-            System.out.println("null");
-            return "RS-001";
-        }
-        String prevId = (String) query.uniqueResult();
-        transaction.commit();
-        session.close();
-
-        String[] id = prevId.split("-");
-        return id[0] + (Integer.parseInt(id[1]) + 1);*/
         Session session = factoryconfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 

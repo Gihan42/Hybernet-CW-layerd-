@@ -4,11 +4,13 @@ import Bo.BOFactory;
 import Bo.custom.ProcessBo;
 import Bo.custom.ReserveBo;
 import Bo.custom.RoomsBo;
+import Bo.custom.StudentBo;
 import Dto.ReserveDto;
 import Dto.RoomsDto;
 import Dto.StudentDto;
 import Entity.Room;
 import Tm.CartTm;
+import Tm.RegistrationTm;
 import Tm.RoomTm;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
@@ -58,18 +60,35 @@ public class ProcessFormController {
     public TableColumn colMonthlyRent;
     public TableColumn colQty;
 
+
+    public TableView<RegistrationTm> tblAllRegistration;
+    public TableColumn colRDate1;
+    public TableColumn colRStudentId1;
+    public TableColumn colRRoomId1;
+    public TableColumn ColRKeyMoney1;
+    public TableColumn colrResId1;
+
+    public JFXTextField txtAStudentId;
+    public JFXTextField txtAStudentName;
+    public JFXTextField txtARoomId;
+    public JFXTextField txtAroomType;
+    public JFXTextField txtAReserveId;
+
+
     private String reid =null;
 
     ProcessBo processBo= (ProcessBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.PROCESS);
     RoomsBo roomsBo= (RoomsBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.ROOM);
     ReserveBo reserveBo= (ReserveBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.RESEVE);
+    StudentBo studentBo= (StudentBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.STUDENT);
+
     ObservableList<CartTm> tmList= FXCollections.observableArrayList();
      public  void initialize(){
           try {
               loadAllStudentId();
               loadAllRoomId();
               getAllRooms();
-             // lblReId.setText(reserveBo.genarateId());
+              loadAllRejistration();
           } catch (SQLException throwables) {
               throwables.printStackTrace();
           } catch (IOException e) {
@@ -88,11 +107,44 @@ public class ProcessFormController {
          colRoomType.setCellValueFactory(new PropertyValueFactory<>("type"));
          colMonthlyRent.setCellValueFactory(new PropertyValueFactory<>("monthly_rent"));
          colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
-         lblReId.setText(genaratenewId());
+            lblReId.setText(genaratenewId());
             btnRegistration.setDisable(true);
             btnRemove.setDisable(true);
-               }
-      public void loadAllRoomId() throws SQLException, IOException, ClassNotFoundException {
+
+         colRDate1.setCellValueFactory(new PropertyValueFactory<>("date"));
+         colRStudentId1.setCellValueFactory(new PropertyValueFactory<>("room_id"));
+         colRRoomId1.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+         ColRKeyMoney1.setCellValueFactory(new PropertyValueFactory<>("key_money"));
+         colrResId1.setCellValueFactory(new PropertyValueFactory<>("res_id"));
+
+        tblAllRegistration.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+             if(newValue !=null){
+                 txtAStudentId.setText(newValue.getRoom_id());
+                 txtARoomId.setText(newValue.getStudent_id());
+                 txtAReserveId.setText(newValue.getRes_id());
+                getAllDetails();
+             }
+         });
+        tblAllRegistration.refresh();
+     }
+
+    private void getAllDetails() {
+        try {
+            RoomsDto roomsDto = roomsBo.searchRooms(txtARoomId.getText());
+            txtAroomType.setText(roomsDto.getType());
+            StudentDto studentDto = studentBo.searchStudent(txtAStudentId.getText());
+            txtAStudentName.setText(studentDto.getStudent_name());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void loadAllRoomId() throws SQLException, IOException, ClassNotFoundException {
          ArrayList<RoomsDto> all=processBo.getAllRoom();
           for (RoomsDto rtm:all
                ) {
@@ -106,7 +158,7 @@ public class ProcessFormController {
               cmbStudentId.getItems().add(stu.getStudent_id());
           }
       }
-    private void generateDateTime() {
+      private void generateDateTime() {
         lblDate.setText(LocalDate.now().toString());
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.ZERO, e -> {
@@ -115,12 +167,12 @@ public class ProcessFormController {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
-   private void setUI(String location) throws IOException {
+      private void setUI(String location) throws IOException {
        Stage stage = (Stage) root.getScene().getWindow();
        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/" + location + ".fxml"))));
        stage.setTitle("AdminForm");
    }
-    public void btnHomeOnAction(ActionEvent actionEvent) throws IOException {
+      public void btnHomeOnAction(ActionEvent actionEvent) throws IOException {
         setUI("AdminForm");
     }
 
@@ -183,12 +235,14 @@ public class ProcessFormController {
         int qty = Integer.parseInt(txtqty.getText());
         double monthlyRent = Double.parseDouble(txtUnitprice.getText());
         double keymoney = Double.parseDouble(txtKeyMoney.getText());
+        tblAllRegistration.getItems().clear();
         try {
             boolean b = reserveBo.saveReserve(new ReserveDto(res_id, lblDate.getText(), monthlyRent, s_id, r_id));
             lblReId.setText(genaratenewId());
             if(b){
                 new Alert(Alert.AlertType.CONFIRMATION,"Student Register")
-.show();            }
+.show();           tblAllRegistration.refresh();
+            }
         } catch (SQLException throwables) {
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong")
                     .show();
@@ -210,4 +264,30 @@ public class ProcessFormController {
         return reid;
     }
 
+    public void loadAllRejistration() throws SQLException, IOException, ClassNotFoundException {
+
+        List<ReserveDto> allReserve = reserveBo.getAllReserve();
+        for (ReserveDto dto: allReserve){
+            tblAllRegistration.getItems().add(new RegistrationTm(dto.getRes_id(),dto.getDate(),dto.getKey_money(), dto.getStudent_id(), dto.getRoom_id()));
+        }
+        tblAllRegistration.refresh();
+    }
+
+    public void removeRegistrationOnAction(ActionEvent actionEvent) {
+
+        try {
+            boolean b = reserveBo.deleteReserve(txtAReserveId.getText());
+            if (b){
+                tblAllRegistration.getItems().remove(tblAllRegistration.getSelectionModel().getSelectedItem());
+                tblAllRegistration.getSelectionModel().clearSelection();
+                new Alert(Alert.AlertType.CONFIRMATION,"Registration Has Been Deleted").show();
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -4,6 +4,8 @@ import Bo.SuperBo;
 import Dto.ReserveDto;
 import Dto.RoomsDto;
 import Dto.StudentDto;
+import Entity.Room;
+import Entity.Student;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,6 +19,5 @@ public interface ProcessBo extends SuperBo {
     String genarateReserveId() throws SQLException, ClassNotFoundException, IOException;
 
     boolean purchaseOrder(RoomsDto orderDTO, ArrayList<ReserveDto> reserveDtos) throws SQLException, ClassNotFoundException, IOException;
-
 
 }

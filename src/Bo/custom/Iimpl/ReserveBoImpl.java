@@ -36,7 +36,7 @@ public class ReserveBoImpl implements ReserveBo {
 
     @Override
     public boolean deleteReserve(String id) throws SQLException, ClassNotFoundException, IOException {
-        return false;
+        return reserveBo.delete(id);
     }
 
     @Override
@@ -46,27 +46,6 @@ public class ReserveBoImpl implements ReserveBo {
 
     @Override
     public List<ReserveDto> getAllReserve() throws SQLException, ClassNotFoundException, IOException {
-       /* ArrayList<ReserveDto> dtoS = new ArrayList<>();
-        transaction.begin();
-        // tr handling
-        List<Reserve> reservationList = null;
-        try{
-            reservationList = reserveBo.getAll();
-            transaction.commit();
-        }catch (Exception e){
-            transaction.rollback();
-        }
-        if (reservationList != null) {
-            for (Reserve reservation : reservationList) {
-                RoomsDto roomDTO = new RoomsDto();
-                StudentDto studentDTO = new StudentDto();
-                roomDTO.setRoom_id(reservation.getRoom().getRoom_id());
-                studentDTO.setStudent_id(reservation.getStudent().getStudent_id());
-                dtoS.add(new ReserveDto(reservation.getRes_id(),reservation.getDate(),reservation.getKey_money(),reservation.getStudent_id(),reservation.getRoom_id()));
-            }
-        }
-        // returns an empty arraylist if none found
-        return dtoS;*/
         List<Reserve> arrayList = reserveBo.getAll();
         ArrayList<ReserveDto> reserveDtos = new ArrayList<>();
         for (Reserve reserve : arrayList) {
