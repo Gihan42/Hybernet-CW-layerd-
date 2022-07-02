@@ -86,5 +86,17 @@ public class RoomsDaoImpl implements RoomsDao {
         transaction.commit();
         session.close();
         return true;
+
+    }
+
+    @Override
+    public void updateRqty(Room entity) throws SQLException, ClassNotFoundException, IOException {
+
+        Session session = factoryconfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Room room=session.get(Room.class,entity.getRoom_id()) ;
+        room.setQty(entity.getQty());
+        transaction.commit();
+        session.close();
     }
 }

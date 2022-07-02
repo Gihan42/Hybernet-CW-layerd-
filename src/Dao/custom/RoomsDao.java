@@ -8,4 +8,5 @@ import java.sql.SQLException;
 
 public interface RoomsDao extends CrudDao<Room,String> {
     public boolean updateRoomsQty(String r_id, int qty) throws SQLException, ClassNotFoundException, IOException ;
+    public void updateRqty(Room entity) throws SQLException, ClassNotFoundException, IOException;
 }

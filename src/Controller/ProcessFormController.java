@@ -14,6 +14,7 @@ import Entity.Room;
 import Tm.CartTm;
 import Tm.RegistrationTm;
 import Tm.RoomTm;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -77,6 +78,7 @@ public class ProcessFormController {
     public JFXTextField txtAroomType;
     public JFXTextField txtAReserveId;
 
+    public JFXComboBox<String> cmbRoomType;
 
 
     private String reid =null;
@@ -95,6 +97,7 @@ public class ProcessFormController {
               loadAllRoomId();
               getAllRooms();
               loadAllRejistration();
+              loadAllRoomType();
           } catch (SQLException throwables) {
               throwables.printStackTrace();
           } catch (IOException e) {
@@ -162,6 +165,13 @@ public class ProcessFormController {
           for (StudentDto stu:all
                ) {
               cmbStudentId.getItems().add(stu.getStudent_id());
+          }
+      }
+      public void loadAllRoomType() throws SQLException, IOException, ClassNotFoundException {
+         ArrayList<RoomsDto> all=processBo.getAllRoom();
+          for (RoomsDto rm:all
+               ) {
+              cmbRoomType.getItems().add(rm.getType());
           }
       }
       private void generateDateTime() {
@@ -245,6 +255,7 @@ public class ProcessFormController {
 
         RoomsDto reserveDto = new RoomsDto();
         try {
+               RoomsDto search=roomsBo.searchRooms(cmbRoomId.getValue());
                 boolean b = reserveBo.saveReserve(new ReserveDto(res_id, lblDate.getText(), keymoney, s_id, r_id));
                 lblReId.setText(genaratenewId());
 
@@ -252,7 +263,10 @@ public class ProcessFormController {
                 new Alert(Alert.AlertType.CONFIRMATION,"Student Register")
 .show();           tblAllRegistration.refresh();
             }
-            roomsDao.updateRoomsQty(r_id,reserveDto.getQty());
+           // roomsDao.updateRoomsQty(r_id,reserveDto.getQty());
+            search.setQty(search.getQty()-1);
+            roomsBo.updateRoomst(search);
+            tblRoom.refresh();
         } catch (SQLException throwables) {
             new Alert(Alert.AlertType.ERROR,"Something Went Wrong")
                     .show();
