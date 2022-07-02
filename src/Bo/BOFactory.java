@@ -1,9 +1,8 @@
 package Bo;
 
-import Bo.custom.Iimpl.ProcessBoImpl;
-import Bo.custom.Iimpl.ReserveBoImpl;
-import Bo.custom.Iimpl.RoomsBoImpl;
-import Bo.custom.Iimpl.StudentBoImpl;
+import Bo.custom.Iimpl.*;
+import Bo.custom.UserBo;
+import Dao.custom.impl.UserDaoImpl;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -17,7 +16,7 @@ public class BOFactory {
         return  boFactory;
     }
     public enum BoTypes{
-        STUDENT,ROOM,PROCESS,RESEVE
+        STUDENT,ROOM,PROCESS,RESEVE,USER
     }
     public SuperBo getBo(BoTypes types) {
         switch (types) {
@@ -29,6 +28,9 @@ public class BOFactory {
                 return new ProcessBoImpl();
             case RESEVE:
                 return new ReserveBoImpl();
+            case USER:
+                return new UserBoImpl() {
+                };
             default:
                 return null;
         }

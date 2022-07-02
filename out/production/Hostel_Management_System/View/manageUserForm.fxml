@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controller.MnageUserFormController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:id="mainPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MnageUserFormController">
+   <children>
+      <TextField fx:id="username" layoutX="157.0" layoutY="81.0" prefHeight="31.0" prefWidth="285.0" promptText="username" />
+      <TextField fx:id="pwd" layoutX="157.0" layoutY="167.0" prefHeight="31.0" prefWidth="285.0" promptText="password" />
+      <TextField fx:id="pwdAgain" layoutX="157.0" layoutY="245.0" prefHeight="31.0" prefWidth="285.0" promptText="password (confirm)" />
+      <JFXButton layoutX="237.0" layoutY="305.0" onAction="#signup" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color: #3eb2ff;" text="Sign Up" />
+      <Text layoutX="157.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username must be more than 3 characters" wrappingWidth="285.0000114440918">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="157.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password must be more than 5 characters " wrappingWidth="285.0000114440918">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Label layoutX="253.0" prefHeight="47.0" prefWidth="117.0" text="Signin">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Separator layoutX="61.0" layoutY="50.0" prefHeight="2.0" prefWidth="484.0" />
+      <ImageView fitHeight="47.0" fitWidth="52.0" layoutX="545.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/1946436.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="542.0" layoutY="6.0" mnemonicParsing="false" onAction="#homeButtonOnAction" opacity="0.0" prefHeight="47.0" prefWidth="54.0" text="Button" />
+   </children>
 </AnchorPane>

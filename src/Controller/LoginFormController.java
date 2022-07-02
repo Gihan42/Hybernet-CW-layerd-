@@ -1,5 +1,8 @@
 package Controller;
 
+import Bo.BOFactory;
+import Bo.custom.UserBo;
+import Dto.UserDto;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.ScaleTransition;
@@ -23,6 +26,7 @@ import javafx.util.Duration;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginFormController {
     public Button btnlogin;
@@ -35,6 +39,8 @@ public class LoginFormController {
     public AnchorPane root;
     public ImageView manageuser;
 
+    UserBo userBo= (UserBo) BOFactory.getBoFactory().getBo(BOFactory.BoTypes.USER);
+
     public void logoutOnAction(ActionEvent actionEvent) {
     }
 
@@ -44,13 +50,23 @@ public class LoginFormController {
     public void textFields_Key_Released(KeyEvent keyEvent) {
     }
 
-    public void loginOnaction(ActionEvent actionEvent) {
-        String userName = txtUserName.getText();
-        String pawd = pwdPassword.getText();
-        if (userName.equalsIgnoreCase("gihan") && pawd.equalsIgnoreCase("123")) {
-        } else {
-            new Alert(Alert.AlertType.WARNING, "please try again").show();
-        }
+    public void loginOnaction(ActionEvent actionEvent) throws SQLException, IOException, ClassNotFoundException {
+        UserDto dto = userBo.search(txtUserName.getText());
+        checkup(dto);
+    }
+    private void checkup(UserDto dto) throws SQLException, ClassNotFoundException, IOException {
+        if(dto!=null){
+            String passcode = pwdPassword.getText();
+
+            if(passcode.equals(dto.getPassword())){
+                // log in successful
+                System.out.printf("successful");
+                Stage stage = (Stage) root.getScene().getWindow();
+                Parent root = FXMLLoader.load(this.getClass().getClassLoader().getResource("View/AdminForm.fxml"));
+                stage.setScene(new Scene(root));
+                stage.show();
+            }else  new Alert(Alert.AlertType.ERROR,"Password is incorrect!").show();
+        }else new Alert(Alert.AlertType.ERROR,"User not found!").show();
     }
 
     public void ShowPasswordOnAction(ActionEvent actionEvent) {

@@ -3,6 +3,7 @@ package Dao;
 import Dao.custom.impl.ReserveDaoImpl;
 import Dao.custom.impl.RoomsDaoImpl;
 import Dao.custom.impl.StudentDaoImpl;
+import Dao.custom.impl.UserDaoImpl;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -19,7 +20,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes {
-        STUDENT,ROOMS,RESERVE
+        STUDENT,ROOMS,RESERVE,USER
     }
 
     public SuperDao getDAO(DAOTypes types) {
@@ -30,6 +31,8 @@ public class DAOFactory {
                     return new RoomsDaoImpl();
             case RESERVE:
                 return new ReserveDaoImpl();
+            case USER:
+                return new UserDaoImpl();
             default:
                 return null;
         }

@@ -13,7 +13,7 @@ public class Appinitializer extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(this.getClass().getResource("/View/AdminForm.fxml"));
+        Parent root = FXMLLoader.load(this.getClass().getResource("/View/loginForm.fxml"));
         Scene mainScene = new Scene(root);
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Hostal Rooms Management");
