@@ -3,6 +3,7 @@ package util;
 import Entity.Reserve;
 import Entity.Room;
 import Entity.Student;
+import Entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -18,7 +19,7 @@ public class factoryconfiguration {
         Properties p = new Properties();
         p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
         Configuration configuration = new Configuration().setProperties(p).addAnnotatedClass(Student.class).
-                addAnnotatedClass(Reserve.class).addAnnotatedClass(Room.class);
+                addAnnotatedClass(Reserve.class).addAnnotatedClass(Room.class).addAnnotatedClass(User.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }

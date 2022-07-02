@@ -24,7 +24,7 @@ public class AdminFormController {
     public ImageView registration;
     public ImageView rooms;
     public ImageView findMoney;
-
+    public ImageView manageuser;
 
 
     @FXML
@@ -98,7 +98,9 @@ public class AdminFormController {
                 case "findMoney":
                     root = FXMLLoader.load(this.getClass().getResource("/View/ProcessForm.fxml"));
                     break;
-
+                case "manageuser":
+                    root = FXMLLoader.load(this.getClass().getResource("/View/manageUserForm.fxml"));
+                    break;
 
             }
 

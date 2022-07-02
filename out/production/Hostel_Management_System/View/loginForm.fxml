@@ -7,11 +7,12 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginFormController">
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginFormController">
    <children>
       <Button fx:id="btnlogin" layoutX="159.0" layoutY="300.0" mnemonicParsing="false" onAction="#loginOnaction" prefHeight="31.0" prefWidth="139.0" style="-fx-background-radius: 30; -fx-border-color: #152f48; -fx-border-radius: 30;" text="LOGIN" textFill="#152f48">
          <font>
@@ -61,5 +62,15 @@
          </cursor>
       </Button>
       <JFXTextField fx:id="TxtShowPw" layoutX="129.0" layoutY="214.0" prefHeight="30.0" prefWidth="337.0" visible="false" />
+      <ImageView fx:id="manageuser" fitHeight="25.0" fitWidth="27.0" layoutX="264.0" layoutY="341.0" onMouseClicked="#navigate" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExitAnimation" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/external-webpage-sign-in-of-personal-account-layout-web-bold-tal-revivo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="298.0" layoutY="338.0" prefHeight="30.0" prefWidth="54.0" text="Signin" textFill="#2294ff">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
